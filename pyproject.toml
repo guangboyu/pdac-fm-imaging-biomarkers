@@ -8,7 +8,7 @@ version = "1.0.0"
 description = "Frozen foundation-model imaging biomarkers for pancreatic cancer in mouse MRI and human CT"
 readme = "README.md"
 license = { file = "LICENSE" }
-requires-python = ">=3.11,<3.13"
+requires-python = ">=3.11,<3.12"
 authors = [{ name = "Guangbo Yu" }]
 dependencies = [
     "numpy==2.4.4",
@@ -25,10 +25,11 @@ dependencies = [
 
 [project.optional-dependencies]
 imaging = [
-    "torch>=2.6,<2.8",
+    "torch==2.7.0",
     "timm==1.0.26",
     "SimpleITK==2.5.3",
     "nibabel==5.4.2",
+    "segment-anything @ git+https://github.com/facebookresearch/segment-anything.git@dca509fe793f601edb92606367a655c15ac00fdf",
 ]
 
 [tool.setuptools.packages.find]
