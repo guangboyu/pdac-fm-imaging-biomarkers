@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+
+# Local configuration and data
+configs/paths.yaml
+data/
+work/
+*.nii
+*.nii.gz
+*.dcm
+*.h5
+
+# Model weights
+*.pt
+*.pth
+*.safetensors
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store

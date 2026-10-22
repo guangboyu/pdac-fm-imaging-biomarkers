@@ -1,0 +1,21 @@
+# Feature configuration of each reported endpoint (Table 2).
+# streams: t1t2 = T2w + T1w; t1t2adc = T2w + T1w + ADC.
+# pooling: see pdacfm/features/pooling.py; aggregation: pdacfm/features/temporal.py.
+# sampling (human): full = stacks over the whole region; tumour = stacks on tumour slices.
+# params (human os): hyperparameters of the published survival model.
+
+mouse:
+  os:                 {encoder: efficientnet_b0, streams: t1t2,    pooling: avg,  aggregation: absolute_pooled}
+  cd8:                {encoder: dinov3_s,        streams: t1t2adc, pooling: msc,  aggregation: moments}
+  collagen:           {encoder: dinov3_b,        streams: t1t2adc, pooling: msc,  aggregation: concat_weeks}
+  cd8_cd68:           {encoder: dinov3_b,        streams: t1t2adc, pooling: attn, aggregation: concat_weeks}
+  treatment_response: {encoder: dinov3_s,        streams: t1t2adc, pooling: attn, aggregation: concat_weeks}
+
+human:
+  os:                     {encoder: dinov3_l, pooling: msc,  sampling: tumour,
+                           params: {family: gbsa, pca: 2, gbsa_n_est: 200,
+                                    gbsa_lr: 0.17586372872414363, gbsa_depth: 2}}
+  cd8a_protein:           {encoder: dinov3_l, pooling: attn, sampling: tumour}
+  col1a1_protein:         {encoder: medsam,   pooling: avg,  sampling: full}
+  cd8_macrophage_protein: {encoder: dinov3_b, pooling: attn, sampling: tumour}
+  cytolytic_activity:     {encoder: medsam,   pooling: avg,  sampling: full}

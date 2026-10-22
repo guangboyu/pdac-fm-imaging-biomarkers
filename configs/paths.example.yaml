@@ -1,0 +1,21 @@
+# Copy to configs/paths.yaml and point at your local data.
+
+mouse:
+  # JSON: {mouse_id: {week2: {t2w, t1w, mask, adc, adc_mask}, week3: ...}}
+  # t2w/t1w: NIfTI images; mask: tumour mask on the T2w grid;
+  # adc: ADC map; adc_mask: tumour mask on the diffusion grid.
+  manifest: data/mouse/manifest.json
+  # CSV, one row per animal; columns listed in pdacfm/labels/mouse.py
+  pathology: data/mouse/pathology.csv
+  embeddings: work/mouse/embeddings
+
+human:
+  # CSV, one row per CT scan; columns listed in pdacfm/labels/human.py,
+  # plus ct_path and mask_path for build_ct_roi.py and, for the
+  # multivariable Cox model, age, stage and grade.
+  scans: data/human/scans.csv
+  roi: work/human/roi
+  embeddings: work/human/embeddings
+  medsam_checkpoint: weights/medsam_vit_b.pth
+
+results: work/results
